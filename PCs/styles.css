@@ -1,0 +1,318 @@
+     .login-button {
+         padding: 10px 20px;
+         background-color: #336699;
+         color: #fff;
+         border: none;
+         cursor: pointer;
+     }
+
+     .login-menu {
+         display: none;
+         position: absolute;
+         top: 40px;
+         left: 0;
+         padding: 20px;
+         background-color: #f1f1f1;
+         width: 200px;
+     }
+
+     .button-outer-space {
+         background-color: #000000;
+         color: #ffffff;
+         border: none;
+         padding: 10px 20px;
+         font-size: 16px;
+         font-weight: bold;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         transition-duration: 0.4s;
+         cursor: pointer;
+     }
+
+     .button-outer-space:hover {
+         background-color: #ffffff;
+         color: #000000;
+     }
+
+     .button-outer-space:active {
+         background-color: #ff9900;
+         color: #ffffff;
+     }
+
+     .dropdown {
+         position: relative;
+         display: inline-block;
+     }
+
+
+     .dropdown-content {
+         display: none;
+         position: absolute;
+         background-color: #f9f9f9;
+         min-width: 160px;
+         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+     }
+
+
+     .dropdown-content a {
+         color: black;
+         padding: 12px 16px;
+         text-decoration: none;
+         display: block;
+     }
+
+
+     .dropdown:hover .dropdown-content {
+         display: block;
+     }
+
+
+     /* Outer space theme */
+     body {
+         background-image: url("https://st4.depositphotos.com/7871188/40768/i/450/depositphotos_407689872-stock-photo-seamless-black-walls-textures-tileable.jpg");
+         background-repeat: repeat;
+         background-size: repeat;
+         color: #ffffff;
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+     }
+
+
+     header {
+         text-align: left;
+         padding: 20px;
+     }
+
+
+     h1 {
+         font-size: 36px;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         margin: 0;
+         align-items: left;
+     }
+
+
+     nav {
+         background-color: #000000;
+         padding: 10px;
+     }
+
+
+     nav a {
+         color: #ffffff;
+         text-decoration: none;
+         margin: 0 10px;
+     }
+
+
+     main {
+         padding: 20px;
+     }
+
+
+     section {
+         margin-bottom: 40px;
+     }
+
+
+     h2 {
+         font-size: 24px;
+         letter-spacing: 1px;
+         margin: 0 0 20px;
+     }
+
+
+     footer {
+         background-color: #000000;
+         color: #ffffff;
+         text-align: center;
+         padding: 10px;
+         font-size: 14px;
+     }
+
+
+     * {
+         box-sizing: border-box
+     }
+
+
+
+
+     /* Slideshow container */
+     .slideshow-container {
+         max-width: 1000px;
+         position: relative;
+         margin: auto;
+     }
+
+
+
+
+     /* Make the images invisible by default */
+     .Containers {}
+
+
+
+
+     /* forward & Back buttons */
+     .Back,
+     .forward {
+         cursor: pointer;
+         position: absolute;
+         top: 48%;
+         width: auto;
+         margin-top: -23px;
+         padding: 17px;
+         color: grey;
+         font-weight: bold;
+         font-size: 19px;
+         transition: 0.4s ease;
+         border-radius: 0 5px 5px 0;
+         user-select: none;
+     }
+
+
+
+
+     /* Place the "forward button" to the right */
+     .forward {
+         right: 0;
+         border-radius: 4px 0 0 4px;
+     }
+
+
+
+
+     /*when the user hovers,add a black background with some little opacity */
+     .Back:hover,
+     .forward:hover {
+         background-color: rgba(0, 0, 0, 0.8);
+     }
+
+
+
+
+     /* Caption Info */
+     .Info {
+         color: #e3e3e3;
+         font-size: 16px;
+         padding: 10px 14px;
+         position: absolute;
+         bottom: 10px;
+         width: 100%;
+         text-align: center;
+     }
+
+
+
+
+     /* Worknumbering (1/3 etc) */
+     .MessageInfo {
+         color: #f2f2f3;
+         font-size: 14px;
+         padding: 10px 14px;
+         position: absolute;
+         top: 0;
+     }
+
+
+
+
+     /* The circles or bullets and indicators */
+     .dots {
+         cursor: pointer;
+         height: 16px;
+         width: 16px;
+         margin: 0 3px;
+         background-color: #acc;
+         border-radius: 50%;
+         display: inline-block;
+         transition: background-color 0.5s ease;
+     }
+
+
+
+
+     .enable,
+     .dots:hover {
+         background-color: #717161;
+     }
+
+
+
+
+     /* Faint animation */
+     .fade {
+         -webkit-animation-name: fade;
+         -webkit-animation-duration: 1.4s;
+         animation-name: fade;
+         animation-duration: 1.4s;
+     }
+
+
+
+
+     @-webkit-keyframes fade {
+         from {
+             opacity: .5
+         }
+
+
+         to {
+             opacity: 2
+         }
+     }
+
+
+
+
+     @keyframes fade {
+         from {
+             opacity: .5
+         }
+
+
+         to {
+             opacity: 2
+         }
+     }
+
+
+
+
+     /* Adjust image scale */
+     .Containers img {
+         width: 25%;
+         /* Change this value to adjust the image scale */
+     }
+
+
+     header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 10px;
+         /* Adjust the padding value as needed */
+     }
+
+
+
+
+     .logo-box {
+         width: 50px;
+         height: 50px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+     }
+
+
+
+
+     .logo {
+         max-width: 100%;
+         max-height: 100%;
+     }
