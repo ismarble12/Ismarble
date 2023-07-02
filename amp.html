@@ -1,0 +1,409 @@
+
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Left Responsive -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3572500305102573"
+				 data-ad-slot="8688813280"
+				 data-ad-format="auto"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+        </div>
+        <div class="col-md-9 main-pane">
+            <section class="content-header">
+                <h1>Ohm's Law Calculator 
+                </h1>
+                <ol class="breadcrumb">
+          <title>Isaac Calculate</title>
+                    <li class="active">Ohm's Law Calculator</li>
+                </ol>
+            </section>
+            <div class="row">
+                <div class="col-md-9">
+                    <main>
+                      <p><em>
+Voltage (V) = Current (I) * Resistance (R)
+<br>
+Power (P) = Voltage (V) * Current (I)
+</em></p>
+<p>Enter any two known values and press "Calculate" to solve for the others.</p>
+<FORM METHOD="POST">
+
+<div class="row form-group">
+    <label class="col-md-3">Voltage (V)</label>
+    <div class="col-md-3"><INPUT class="form-control" TYPE=text  id="iVoltage" placeholder="voltage"></div>
+    <div class="col-md-3">Volts (V)</div>
+</div>
+
+<div class="row form-group">
+    <label class="col-md-3">Current (I)</label>
+    <div class="col-md-3"><INPUT class="form-control" TYPE=text  id="iCurrent" placeholder="current"></div>
+    <div class="col-md-3">
+        <select class="form-control" id="sCurrentUnit">
+            <option value="1" selected="selected">amps (A)</option>
+            <option value="0.001">milliamps (mA)</option>
+        </select>
+    </div>
+</div>
+
+<div class="row form-group">
+    <label class="col-md-3">Resistance (R)</label>
+    <div class="col-md-3"><INPUT class="form-control to-calc" TYPE=text id="iResistance" placeholder="resistance"></div>
+    <div class="col-md-3">
+        <select class="form-control" id="sResistanceUnit">
+            <option value="1"  selected="selected">ohms (&Omega;)</option>
+            <option value="1000">kilohms (k&Omega;)</option>
+            <option value="1000000">megaohms (m&Omega;)</option>
+        </select>
+    </div>
+</div>
+
+<div class="row form-group">
+    <label class="col-md-3">Power (P)</label>
+    <div class="col-md-3"><INPUT class="form-control to-calc" TYPE=text id="iPower" placeholder="power" data-toggle="tooltip" data-placement="bottom"></div>
+    <div class="col-md-3">Watts (W)</div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <button TYPE="BUTTON" class="btn btn-primary" id="btnCalc" disabled="disabled">Calculate</button> 
+    </div>
+    <div class="col-md-6">
+        Click "Calculate" to update the fields with orange borders.
+    </div>
+</div>
+</FORM>
+                        </main>
+                </div>
+                <div class="col-md-3 right-pane">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Right-Responsive -->
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-3572500305102573"
+				     data-ad-slot="2329191287"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height 2em; text-align:center" class="row"><div class="col-md-12"><a href="http://zeropointlabs.com/our-work/web-applications">Web Application Developed by Zero Point Labs</a></div></div>
+</div>
+<script src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/js/site.js"></script>
+<script>    var volts=null;
+    var amps=null;
+    var ohms=null;
+    var watts=null;
+    var calcVolts=false;
+    var calcAmps=false;
+    var calcOhms=true;
+    var calcWatts=true;
+    
+    function readVolts(inedit)
+    {
+	    val = $('#iVoltage').val();
+    
+        if (val=="" || val==null)
+        {
+            volts=null;
+        }
+        else if ($.isNumeric(val))
+        {
+            volts=Number(val);
+        }
+        else if (!inedit)
+        {
+            $('#iVoltage').val(volts);
+        }
+    
+	   updateForm();
+    }
+
+    function readAmps(inedit)
+    {
+	   	var val=$('#iCurrent').val();
+        var scale=$('#sCurrentUnit').val();
+        if (val=="" || val==null)
+        {
+            amps=null;
+        }
+        else if ($.isNumeric(val))
+        {
+            amps=Number(val)*Number(scale);
+        }
+        else if (!inedit)
+        {
+            $('#iCurrent').val(amps/scale);
+        }
+    
+	   updateForm();
+    }
+
+    function readOhms(inedit)
+    {
+	   	var val=$('#iResistance').val();
+        var scale=$('#sResistanceUnit').val();
+        if (val=="" || val==null)
+        {
+            ohms=null;
+        }
+        else if ($.isNumeric(val))
+        {
+            ohms=Number(val)*Number(scale);
+        }
+        else if (!inedit)
+        {
+            $('#iResistance').val(ohms/scale);
+        }
+    
+	   updateForm();
+    }
+    
+    function readWatts(inedit)
+    {
+	    val = $('#iPower').val();
+    
+        if (val=="" || val==null)
+        {
+            watts=null;
+        }
+        else if ($.isNumeric(val))
+        {
+            watts=Number(val);
+        }
+        else if (!inedit)
+        {
+            $('#iPower').val(watts);
+        }
+    
+	   updateForm();
+    }
+    
+    function updateForm()
+    {
+    	numFields=0;
+    
+    	if (volts>0)
+    		numFields++;
+    	if (amps>0)
+    		numFields++;
+    	if (ohms>0)
+    		numFields++;
+    	if (watts>0)
+    		numFields++;
+    
+    	if (numFields>=2)
+    	{
+    		$('#btnCalc').removeAttr('disabled');
+    	}
+    	else
+        {
+    		$('#btnCalc').attr('disabled','disabled');
+        }
+    
+        if (numFields==2 || numFields==3)
+        {
+            if (volts>0)
+            {
+                calcVolts=false;
+                $('#iVoltage').removeClass('to-calc');
+            }
+            else
+            {
+                calcVolts=true;
+                $('#iVoltage').addClass('to-calc');
+            }
+            if (amps>0)
+            {
+                calcAmps=false;
+                $('#iCurrent').removeClass('to-calc');
+            }
+            else
+            {
+                calcAmps=true;
+                $('#iCurrent').addClass('to-calc');
+            }
+            if (ohms>0)
+            {
+                calcOhms=false;
+                $('#iResistance').removeClass('to-calc');
+            }
+            else
+            {
+                calcOhms=true;
+                $('#iResistance').addClass('to-calc');
+            }
+            if (watts>0)
+            {
+                calcWatts=false;
+                $('#iPower').removeClass('to-calc');
+            }
+            else
+            {
+                calcWatts=true;
+                $('#iPower').addClass('to-calc');
+            }
+        }
+    }
+    
+    function calc()
+    {
+        updateForm();
+    
+        $('#iVoltage').parent().parent().removeClass('has-error');
+        $('#iCurrent').parent().parent().removeClass('has-error');
+        $('#iResistance').parent().parent().removeClass('has-error');
+        $('#iPower').parent().parent().removeClass('has-error');
+        $('#iVoltage').attr('title','');
+        $('#iCurrent').attr('title','');
+        $('#iResistance').attr('title','');
+        $('#iPower').attr('title','');
+    
+        if (calcVolts && calcAmps)
+        {
+            amps  = Math.sqrt((watts/ohms),2); 
+            volts = amps*ohms;
+        }
+        else if (calcVolts && calcOhms)
+        {
+            volts = watts/amps; 
+            ohms  = volts/amps;
+        }
+        else if (calcVolts && calcWatts)
+        {
+            volts = amps*ohms; 
+            watts = amps*amps*ohms;
+        }
+        else if (calcAmps && calcOhms)
+        {
+            amps  = watts/volts; 
+            ohms  = volts/amps;
+        }
+        else if (calcAmps && calcWatts)
+        {
+            amps  = volts/ohms; 
+            watts = volts*amps;
+        }
+        else if (calcOhms && calcWatts)
+        {
+            ohms  = volts/amps; 
+            watts = volts*amps;
+        }
+        else if (calcVolts)
+        {
+            volts = amps*ohms;
+            testWatts = volts*amps;
+            if (Math.abs((testWatts-watts)/testWatts)>0.0001)
+            {
+                $("#iPower").parent().parent().addClass("has-error");
+                $("#iPower").attr('data-original-title','Expected '+testWatts);
+            }
+        }
+        else if (calcAmps)
+        {
+            amps  = volts/ohms;
+            testWatts = volts*amps;
+            if (Math.abs((testWatts-watts)/testWatts)>0.0001)
+            {
+                $("#iPower").parent().parent().addClass("has-error");
+                $("#iPower").attr('data-original-title','Expected '+testWatts);
+            }
+        }
+        else if (calcOhms)
+        {
+            ohms  = volts/amps;
+            testWatts = volts*amps;
+            if (Math.abs((testWatts-watts)/testWatts)>0.0001)
+            {
+                $("#iPower").parent().parent().addClass("has-error");
+                $("#iPower").attr('data-original-title','Expected '+testWatts);
+            }
+        }
+        else if (calcWatts)
+        {
+            watts = volts*amps;
+            testOhms = volts/amps;
+            if (Math.abs((testOhms-ohms)/testOhms)>0.0001)
+            {
+                $("#iResistance").parent().parent().addClass("has-error");
+                $("#iResistance").attr('data-original-title','Expected '+testOhms);
+            }
+        }
+    
+        volts = Math.round (volts*100000);
+        volts = volts/100000;
+        amps = Math.round(amps*100000);
+        amps = amps/100000;
+        ohms = Math.round(ohms*100000);
+        ohms = ohms/100000;
+        watts = Math.round(watts*100000);
+        watts = watts/100000;
+    
+        $('#iVoltage').val(volts);   
+        $('#iCurrent').val(amps/$('#sCurrentUnit').val());
+        $('#iResistance').val(ohms/$('#sResistanceUnit').val());
+        $('#iPower').val(watts);
+    }
+
+    $(document).ready(function() {
+        $('#iVoltage').change(function () {
+            readVolts(false);});
+        $('#iVoltage').keyup(function () {
+            readVolts(true);});
+            $('#iCurrent').change(readAmps);
+
+        $('#iCurrent').change(function () {
+            readAmps(false);});
+        $('#iCurrent').keyup(function () {
+            readAmps(true);});
+    
+        $('#sCurrentUnit').change(function () {
+            readAmps(false);});
+    
+        $('#iResistance').change(function () {
+            readOhms(false);});
+        $('#iResistance').keyup(function () {
+            readOhms(true);});
+    
+        $('#sResistanceUnit').change(function () {
+            readOhms(false);});
+
+        $('#iPower').change(function () {
+            readWatts(false);});
+        $('#iPower').keyup(function () {
+            readWatts(true);});
+
+        $('input').not('#search input').keyup(function(e) {
+            var focusables = $("input:focusable").not('#search input');      
+            if (e.keyCode == 40) {
+                // down key
+                var current = focusables.index(this);
+                next = focusables.eq(current+1).length ? focusables.eq(current+1) : focusables.eq(0);
+                next.focus();
+            } else if (e.keyCode == 38) {
+                // up key
+                var current = focusables.index(this),
+                prev = focusables.eq(current-1).length ? focusables.eq(current-1) : focusables.eq(focusables.length-1);
+                prev.focus();
+            }
+        });
+        
+        $('#btnCalc').click(calc);
+        $('input').keypress(function (e) {
+            if (e.which == 13 && $('#btnCalc').attr('disabled')==undefined) {
+                console.log("calrc");
+                calc();
+            }
+        });
+    
+        $('[data-toggle="tooltip"]').tooltip({ container: 'body'});
+    });</script></body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Transformation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4F4F4F;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .logo {
+      width: 100px;
+      height: 50px;
+      border-radius: 50% / 50%;
+      background-color: black;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      color: white;
+      font-size: 20px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #4F4F4F;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      margin-top: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .speed-slider {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+
+    .slider-label {
+      margin-right: 10px;
+    }
+
+    .slider {
+      width: 200px;
+      -webkit-appearance: none;
+      background-color: #4F4F4F;
+      height: 5px;
+      border-radius: 2.5px;
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .slider::-webkit-slider-thumb:hover {
+      background-color: #FFF;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb:hover {
+      background-color: #FFF;
+    }
+
+    /* New CSS styles for animation */
+    @keyframes flyIn {
+      from {
+        transform: translate(-100%, -100%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+    }
+
+    .animated {
+      animation: flyIn 1s ease-in-out;
+      animation-fill-mode: both;
+    }
+  </style>
+  <script>
+    function transformWord() {
+      var input = document.getElementById("inputWord").value;
+      var words = input.split(" ");
+      var transformedWords = [];
+
+      words.forEach(function(word) {
+        if (word.length === 1) {
+          if (word.toLowerCase() === "i") {
+            transformedWords.push("mi");
+          }
+        } else if (word.length === 2 || word.length === 3) {
+          transformedWords.push(word.charAt(1) + word.charAt(0));
+        } else if (word.length > 3) {
+          var front = word.substring(0, Math.floor(word.length / 2));
+          var back = word.substring(Math.floor(word.length / 2));
+          var transformedWord = back + front.substring(1) + front.charAt(0);
+          transformedWords.push(transformedWord);
+        }
+      });
+
+      var transformedSentence = transformedWords.join(" ");
+      document.getElementById("outputWord").textContent = transformedSentence;
+    }
+
+    function speakOutput() {
+      var outputText = document.getElementById("outputWord").textContent;
+      var utterance = new SpeechSynthesisUtterance(outputText);
+      var speed = document.getElementById("speedSlider").value;
+      utterance.rate = speed;
+      speechSynthesis.speak(utterance);
+    }
+
+    function animateElements() {
+      var elements = document.getElementsByClassName("animated");
+      var corners = ["top-left", "top-right", "bottom-left", "bottom-right"];
+
+      for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        var randomCorner = corners[Math.floor(Math.random() * corners.length)];
+
+        switch (randomCorner) {
+          case "top-left":
+            element.style.transformOrigin = "left top";
+            break;
+          case "top-right":
+            element.style.transformOrigin = "right top";
+            break;
+          case "bottom-left":
+            element.style.transformOrigin = "left bottom";
+            break;
+          case "bottom-right":
+            element.style.transformOrigin = "right bottom";
+            break;
+        }
+
+        element.classList.add("animated");
+      }
+    }
+
+function changeBackgroundColor() {
+  var color = document.getElementById("colorPicker").value;
+  document.body.style.backgroundColor = color;
+  // Save the color in a cookie
+  document.cookie = "backgroundColor=" + color + ";expires=Thu, 31 Dec 2023 23:59:59 GMT";
+
+  // Update the color indicator
+  document.getElementById("savedColorIndicator").style.backgroundColor = color;
+}
+    function resetColor() {
+      document.body.style.backgroundColor = "#101C2A"; // Reset to default background color
+      document.getElementById("colorPicker").value = "#101C2A"; // Reset color picker value
+      // Remove the color cookie
+      document.cookie = "backgroundColor=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+    function pickRandomColor() {
+      var randomColor = getRandomColor();
+      document.body.style.backgroundColor = randomColor;
+      document.getElementById("colorPicker").value = randomColor;
+      // Save the color in a cookie
+      document.cookie = "backgroundColor=" + randomColor + ";expires=Thu, 31 Dec 2023 23:59:59 GMT";
+    }
+
+    // Helper function to generate a random color
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+  window.onload = function() {
+  animateElements();
+  // Check if there is a saved background color in the cookie
+  var savedColor = getCookie("backgroundColor");
+  if (savedColor) {
+    document.body.style.backgroundColor = savedColor;
+    document.getElementById("colorPicker").value = savedColor;
+    // Add indicator
+    document.getElementById("savedColorIndicator").style.backgroundColor = savedColor;
+  } else {
+    document.body.style.backgroundColor = "#101C2A"; // Set default color here
+    document.getElementById("colorPicker").value = "#101C2A"; // Set default color here
+  }
+};
+
+// Function to get the value of a cookie by name
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length === 2) {
+    return parts.pop().split(";").shift();
+  }
+}  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>WT</h1>
+    </div>
+    <h3>Word Transformation</h3>
+  </header>
+
+  <label for="inputWord"><h2>Enter a word or sentence:</h2></label>
+  <input type="text" id="inputWord" placeholder="Enter a word">
+  <button onclick="transformWord()">Transform</button>
+
+  <p>Transformed sentence:</p>
+  <p id="outputWord"></p>
+
+  <div class="speed-slider">
+    <label class="slider-label">Talking Speed:</label>
+    <input type="range" id="speedSlider" min="0.5" max="2" step="0.1" value="1" class="slider">
+  </div>
+
+  <button onclick="speakOutput()">Speak Output</button>
+
+  <label for="colorPicker"><h2>Choose a background color:</h2></label>
+  <input type="color" id="colorPicker">
+  <button onclick="changeBackgroundColor()">Save Color</button>
+  <button onclick="resetColor()">Reset Color</button>
+  <button onclick="pickRandomColor()">Random Color</button>
+  <br>
+  <h3>Your Currently Saved Color:</h3>
+  <p id="savedColorIndicator" style="width: 80px; height: 20px; border: 3px solid black; display: inline-block;"></p>
+</body>
+</html>
